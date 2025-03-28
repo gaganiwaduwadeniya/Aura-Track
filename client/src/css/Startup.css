@@ -1,0 +1,571 @@
+/* General Styles */
+.startup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f0f4ff, #d9e4ff); /* Soft blue gradient */
+  color: #333; /* Dark text for light mode */
+  text-align: center;
+  transition: background 0.5s, color 0.5s;
+  overflow: hidden; /* Hide scroll bars */
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.startup-container.dark-mode {
+  background: linear-gradient(135deg, #1a1a1a, #333333); /* Dark gradient */
+  color: #f5f5f5; /* Light text for dark mode */
+}
+
+/* Background Animation Container */
+.background-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.background-animation::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
+  animation: moveBackground 15s ease-in-out infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.1) translate(2%, 2%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+/* Particles Animation */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.particles::before, .particles::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  opacity: 0.4;
+}
+
+.particles::before {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(173, 216, 230, 0.7), transparent 70%);
+  animation-name: floatParticle1;
+  top: 20%;
+  left: 10%;
+}
+
+.particles::after {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.6), transparent 70%);
+  animation-name: floatParticle2;
+  bottom: 15%;
+  right: 10%;
+}
+
+@keyframes floatParticle1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -30px); }
+}
+
+@keyframes floatParticle2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, 30px); }
+}
+
+.dark-mode .particles::before {
+  background: radial-gradient(circle, rgba(70, 130, 180, 0.3), transparent 70%);
+}
+
+.dark-mode .particles::after {
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.3), transparent 70%);
+}
+
+/* Logo Styles */
+.logo-container {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 
+              inset 0 -6px 12px rgba(0, 0, 0, 0.05), 
+              inset 0 6px 12px rgba(255, 255, 255, 0.3);
+  animation: pulse 4s infinite ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-mode .logo {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 
+              inset 0 -6px 12px rgba(0, 0, 0, 0.2), 
+              inset 0 6px 12px rgba(255, 255, 255, 0.05);
+}
+
+/* Face Recognition Icon */
+.face-recognition-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+}
+
+/* Face Outline */
+.face-outline {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid #3a7bd5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulseOutline 2s infinite ease-in-out;
+}
+
+.dark-mode .face-outline {
+  border-color: #21d4fd;
+}
+
+@keyframes pulseOutline {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(58, 123, 213, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(58, 123, 213, 0);
+  }
+}
+
+.dark-mode .face-outline {
+  animation-name: pulseOutlineDark;
+}
+
+@keyframes pulseOutlineDark {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(33, 212, 253, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(33, 212, 253, 0);
+  }
+}
+
+/* Scan Line */
+.scan-line {
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, 
+    rgba(58, 123, 213, 0), 
+    rgba(58, 123, 213, 0.8), 
+    rgba(58, 123, 213, 0));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: scanAnimation 2s infinite;
+  border-radius: 2px;
+}
+
+.dark-mode .scan-line {
+  background: linear-gradient(to right, 
+    rgba(33, 212, 253, 0), 
+    rgba(33, 212, 253, 0.8), 
+    rgba(33, 212, 253, 0));
+}
+
+@keyframes scanAnimation {
+  0% {
+    transform: translate(-50%, -30px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 30px);
+    opacity: 0;
+  }
+}
+
+/* Face Grid */
+.face-grid {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.face-grid::before, .face-grid::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(58, 123, 213, 0.3);
+}
+
+.dark-mode .face-grid::before, .dark-mode .face-grid::after {
+  background-color: rgba(33, 212, 253, 0.3);
+}
+
+/* Vertical lines */
+.face-grid::before {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Horizontal lines */
+.face-grid::after {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Add additional grid lines */
+.face-grid::before {
+  box-shadow: -10px 0 0 rgba(58, 123, 213, 0.3),
+              10px 0 0 rgba(58, 123, 213, 0.3);
+}
+
+.face-grid::after {
+  box-shadow: 0 -10px 0 rgba(58, 123, 213, 0.3),
+              0 10px 0 rgba(58, 123, 213, 0.3);
+}
+
+.dark-mode .face-grid::before {
+  box-shadow: -10px 0 0 rgba(33, 212, 253, 0.3),
+              10px 0 0 rgba(33, 212, 253, 0.3);
+}
+
+.dark-mode .face-grid::after {
+  box-shadow: 0 -10px 0 rgba(33, 212, 253, 0.3),
+              0 10px 0 rgba(33, 212, 253, 0.3);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Content Styles */
+.content {
+  max-width: 600px;
+  padding: 30px;
+  animation: fadeIn 2s ease-in-out;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .content {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+h1 {
+  font-size: 2.7rem;
+  margin-bottom: 15px;
+  animation: slideInFromTop 1s ease-in-out;
+  font-weight: 700;
+  background: linear-gradient(to right, #3a7bd5, #00d2ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode h1 {
+  background: linear-gradient(to right, #b721ff, #21d4fd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.aura-track {
+  display: block;
+  margin-top: 10px; /* Adjust the spacing as needed */
+}
+
+p {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  animation: slideInFromBottom 1.5s ease-in-out;
+  line-height: 1.6;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  animation: fadeIn 2.5s ease-in-out;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Button Styles */
+.btn {
+  background: white;
+  padding: 14px 28px;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  left: 0;
+}
+
+.btn.mark-attendance {
+  background: linear-gradient(135deg, #56CCF2, #2F80ED); /* Vibrant blue gradient */
+  color: white;
+}
+
+.btn.admin-login {
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Purple gradient */
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-icon {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+/* Dark Mode Button */
+/* Adding these new styles for the toggle switch at the end of your CSS file */
+
+.mode-toggle-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  padding: 8px 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dark-mode .mode-toggle-container {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.mode-label {
+  margin-right: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-right: 10px;
+  margin-top: 8px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #151a4b; /* Teal/turquoise color to match the image */
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}
+
+/* Remove the old mode-toggle styles if you want to avoid conflicts */
+.mode-toggle {
+  display: none; /* Hide the old button */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mode-toggle-container {
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+  }
+  
+  .mode-label {
+    font-size: 0.8rem;
+  }
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  z-index: 1;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content {
+    padding: 20px;
+    max-width: 90%;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+  }
+  
+  .button-container {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+/* Hide scroll bars */
+body {
+  margin: 0;
+  overflow: hidden;
+}
