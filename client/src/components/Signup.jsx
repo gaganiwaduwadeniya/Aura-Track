@@ -253,7 +253,7 @@ const AdminSignup = () => {
 
         <div className="login-link">
           <p>Already have an account?</p>
-          <Link to="/admin-login">Log In</Link>
+          <Link to="/signin">Log In</Link>
         </div>
 
         <div className="back-link">

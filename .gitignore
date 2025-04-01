@@ -5,3 +5,5 @@ node_modules
 /python/temp_faces
 /python/known_faces
 /python/face_embeddings.pkl
+
+/server/env
